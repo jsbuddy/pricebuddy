@@ -43,8 +43,24 @@ router.get('/fetch', async (req, res) => {
 			}
 		]
 	);
+	const slot = await scrap(
+		url.parse(`http://slot.ng/?s=${q}&search_posttype=product`).href,
+		'.product.type-product',
+		[
+			{
+				name: '.products-content h4 a',
+				price: {
+					special: '.item-price ins .amount',
+					original: '.item-price del .amount',
+					slotprice: '.item-price .amount'
+				},
+				img: '.products-thumb img@data-lazy-src',
+				link: '.products-content h4 a@href'
+			}
+		]
+	);
 
-	res.json({jumia, konga});
+	res.json({jumia, konga, slot});
 });
 
 module.exports = router;

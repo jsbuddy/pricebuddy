@@ -1,7 +1,7 @@
 class Results extends React.Component {
 	state = {
 		minPrice: 0,
-		maxPrice: 220000,
+		maxPrice: 3600000,
 		stores: [],
 		products: []
 	};
@@ -17,7 +17,11 @@ class Results extends React.Component {
 				});
 				return _new.concat(final);
 			}, [])
-			.filter(product => product.name && (product.price.special || product.price.original));
+			.filter(
+				product =>
+					product.name &&
+					(product.price.special || product.price.original || product.price.slotprice)
+			);
 
 		this.setState({stores: this.stores, products});
 	}
@@ -39,11 +43,14 @@ class Results extends React.Component {
 	};
 
 	striprice = p => {
-		return p
+		let price = p.special || p.original || p.slotprice;
+		price = price
 			.trim()
+			.split('.')[0]
 			.replace(' ', '')
 			.replace('₦', '')
 			.replace(',', '');
+		return parseInt(price, 10);
 	};
 
 	capitalize = str => {
@@ -57,7 +64,7 @@ class Results extends React.Component {
 	render() {
 		const {minPrice, maxPrice, stores, products} = this.state;
 
-		console.log(this.props.data, stores);
+		// console.log(this.props.data, stores);
 
 		return (
 			<div className={'results'}>
@@ -121,23 +128,12 @@ class Results extends React.Component {
 								{products
 									.filter(product => stores.includes(product.store))
 									.filter(product => {
-										const price = parseInt(
-											this.striprice(
-												product.price.special || product.price.original
-											),
-											10
-										);
+										const price = this.striprice(product.price);
 										return price > minPrice && price < maxPrice;
 									})
 									.sort((a, b) => {
-										const aPrice = parseInt(
-											this.striprice(a.price.special || a.price.original),
-											10
-										);
-										const bPrice = parseInt(
-											this.striprice(b.price.special || b.price.original),
-											10
-										);
+										const aPrice = this.striprice(a.price);
+										const bPrice = this.striprice(b.price);
 										return aPrice < bPrice;
 									})
 									.map(
@@ -156,7 +152,9 @@ class Results extends React.Component {
 														<h5 className={'price'}>
 															{product.price.special
 																? product.price.special
-																: product.price.original}
+																: product.price.original
+																	? product.price.original
+																	: product.price.slotprice}
 															<span className="old">
 																{product.price.special
 																	? product.price.original
@@ -165,52 +163,13 @@ class Results extends React.Component {
 														</h5>
 														<span className={'rating'} />
 														<h6 className={'store'}>
-															{this.capitalize(product.store)} |{' '}
-															{product.brand}
+															{this.capitalize(product.store)}
+															{product.brand && ` - ${product.brand}`}
 														</h6>
 													</div>
 												</div>
 											)
 									)}
-								{/* 								
-								<div className={'item'}>
-									<div className={'img'}>
-										<img src={'/static/item.jpg'} />
-									</div>
-									<div className={'content'}>
-										<h4 className={'name'}>
-											Lenovo IdeaPad 4, London Used, 4gb RAM, 200GB HDD, Intel
-											6th Gen Core i8
-										</h4>
-										<h5 className={'price'}>
-											N34,556 <span className="old">N33444</span>
-										</h5>
-										<span className={'rating'} />
-										<h6 className={'store'}>Jumia Nigeria</h6>
-									</div>
-								</div>
-								<div className={'item'}>
-									<div className={'img'}>
-										<img src={'/static/item.jpg'} />
-									</div>
-									<div className={'content'}>
-										<h4 className={'name'}>Infinix Hot 4</h4>
-										<h5 className={'price'}>N34,556</h5>
-										<span className={'rating'} />
-										<h6 className={'store'}>Jumia Nigeria</h6>
-									</div>
-								</div>
-								<div className={'item'}>
-									<div className={'img'}>
-										<img src={'/static/item.jpg'} />
-									</div>
-									<div className={'content'}>
-										<h4 className={'name'}>Infinix Hot 4</h4>
-										<h5 className={'price'}>N34,556</h5>
-										<span className={'rating'} />
-										<h6 className={'store'}>Jumia Nigeria</h6>
-									</div>
-								</div> */}
 							</div>
 						</div>
 					</div>
