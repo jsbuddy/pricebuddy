@@ -3,7 +3,9 @@ import Navbar from '../components/Navbar';
 class Header extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault();
-		const value = [...e.target].find(el => el.name === 'search').value.trim();
+		const value = Array.from(e.target)
+			.filter(el => el.name === 'search')[0]
+			.value.trim();
 		value && this.props._fetch(value);
 	};
 
@@ -97,7 +99,7 @@ class Header extends React.Component {
 							justify-content: center;
 						}
 						header.searched > .container {
-							align-items: flex-end;
+							padding-top: 110px;
 							padding-bottom: 2em;
 							height: 210px;
 						}

@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Xray = require('x-ray');
 const xray = new Xray();
+const url = require('url');
 
 router.get('/fetch', async (req, res) => {
 	const q = req.query.q;
 
 	const jumia = await scrap(
-		`https://www.jumia.com.ng/catalog/?q=${q}`,
+		url.parse(`https://www.jumia.com.ng/catalog/?q=${q}`).href,
 		'.products .sku',
 		[
 			{
@@ -23,7 +24,7 @@ router.get('/fetch', async (req, res) => {
 		]
 	);
 	const konga = await scrap(
-		`https://www.konga.com/catalogsearch/result/?q=${q}`,
+		url.parse(`https://www.konga.com/catalogsearch/result/?q=${q}`).href,
 		'.product-block-container',
 		[
 			{
@@ -42,7 +43,8 @@ router.get('/fetch', async (req, res) => {
 			}
 		]
 	);
-	res.json({ jumia, konga });
+
+	res.json({jumia, konga});
 });
 
 module.exports = router;

@@ -1,8 +1,10 @@
+import 'core-js/es6';
 import React, {Component} from 'react';
 import Header from '../components/Header';
 import Results from '../components/Results';
 import Loader from '../components/Loader';
 import Head from 'next/head';
+import 'isomorphic-fetch';
 
 class App extends Component {
 	state = {
@@ -51,7 +53,7 @@ class App extends Component {
 						color: slategray;
 					}
 					body {
-						background-color: #f9f9f9;
+						background-color: #fff;
 						font-size: 14px;
 					}
 					a {
@@ -70,6 +72,12 @@ class App extends Component {
 					@media (max-width: 1050px) {
 						.container {
 							padding: 0 1em;
+						}
+					}
+
+					@media (max-width: 1050px) {
+						body {
+							font-size: 13px;
 						}
 					}
 				`}</style>

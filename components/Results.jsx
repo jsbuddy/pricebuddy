@@ -24,7 +24,7 @@ class Results extends React.Component {
 
 	handleFilter = e => {
 		e.preventDefault();
-		const data = [...e.target];
+		const data = Array.from(e.target);
 
 		const minPrice = data.find(el => el.name === 'min-price').value,
 			maxPrice = data.find(el => el.name === 'max-price').value,
@@ -46,38 +46,6 @@ class Results extends React.Component {
 			.replace(',', '');
 	};
 
-	// _set = () => {
-	// 	const {data} = this.props;
-	// 	const {minPrice, maxPrice, stores} = this.state;
-
-	// 	const products = Object.keys(data)
-	// 		.reduce((_new, key) => {
-	// 			const final = data[key].map(p => {
-	// 				p.store = key;
-	// 				return p;
-	// 			});
-	// 			return _new.concat(final);
-	// 		}, [])
-	// 		.filter(product => product.name && (product.price.special || product.price.original))
-	// 		.filter(product => stores.includes(product.store))
-	// 		.filter(product => {
-	// 			const price = parseInt(
-	// 				this.striprice(product.price.special || product.price.original),
-	// 				10
-	// 			);
-	// 			return price > minPrice && price < maxPrice;
-	// 		})
-	// 		.sort((a, b) => {
-	// 			const aPrice = parseInt(this.striprice(a.price.special || a.price.original), 10);
-	// 			const bPrice = parseInt(this.striprice(b.price.special || b.price.original), 10);
-	// 			return aPrice < bPrice;
-	// 		});
-
-	// 	console.log(products);
-
-	// 	return products;
-	// };
-
 	capitalize = str => {
 		return str
 			.toLowerCase()
@@ -87,10 +55,9 @@ class Results extends React.Component {
 	};
 
 	render() {
-		const {data} = this.props;
 		const {minPrice, maxPrice, stores, products} = this.state;
 
-		console.log(data, stores);
+		console.log(this.props.data, stores);
 
 		return (
 			<div className={'results'}>
@@ -118,6 +85,10 @@ class Results extends React.Component {
 								<section>
 									<h4 className={'title'}>Store</h4>
 									{this.stores.map((store, i) => {
+										const checked = stores.reduce((check, _store) => {
+											if (_store === store) check = true;
+											return check;
+										}, false);
 										return (
 											<div key={i} className={'checkbox'}>
 												<input
@@ -125,14 +96,16 @@ class Results extends React.Component {
 													id={store.toLowerCase()}
 													name={store.toLowerCase()}
 													className={store.toLowerCase()}
-													defaultChecked={stores.includes(store)}
+													defaultChecked={checked}
 												/>
 												<label htmlFor={store.toLowerCase()}>
 													{this.capitalize(store)}
-													({
-														products.filter(p => p.store === store)
-															.length
-													})
+													<span className="length">
+														{
+															products.filter(p => p.store === store)
+																.length
+														}
+													</span>
 												</label>
 											</div>
 										);
@@ -199,33 +172,8 @@ class Results extends React.Component {
 												</div>
 											)
 									)}
-								{/* {data.jumia.concat(data.konga).map(
-									(product, i) =>
-										product.name && (
-											<div className={'item'} key={i}>
-												<div className={'img'}>
-													<img src={product.img} />
-												</div>
-												<div className={'content'}>
-													<h4 className={'name'}>
-														<a href={product.link}>
-															{product.name}
-														</a>
-													</h4>
-													<h5 className={'price'}>
-														{product.price.special}
-													</h5>
-													<span
-														className={'rating'}
-													/>
-													<h6 className={'store'}>
-														{product.brand}
-													</h6>
-												</div>
-											</div>
-										)
-								)} */}
-								{/* <div className={'item'}>
+								{/* 								
+								<div className={'item'}>
 									<div className={'img'}>
 										<img src={'/static/item.jpg'} />
 									</div>
@@ -317,10 +265,10 @@ class Results extends React.Component {
 						overflow: hidden;
 					}
 					.items .item .content .name {
-						font-size: 1.4em;
+						font-size: 1.3em;
 						overflow: hidden;
 						text-overflow: ellipsis;
-						white-space: nowrap;
+						margin-bottom: 5px;
 					}
 					.items .item .content .price {
 						font-size: 1.1em;
@@ -367,11 +315,10 @@ class Results extends React.Component {
 					.filter section input[type='number'] {
 						display: inline;
 						padding: 0.7em 0.8em;
-						color: #fff;
 						border: 1px solid rgba(0, 0, 0, 0.05);
 						border-radius: 2px;
-						// background: linear-gradient(45deg,#1ba899,#008f89);
-						background: linear-gradient(45deg, #008f89ab, #4682b4cc);
+						background-color: #eee;
+						color: slategrey;
 					}
 					.filter section .checkbox {
 						display: block;
@@ -391,7 +338,7 @@ class Results extends React.Component {
 					}
 					.filter section .checkbox input[type='checkbox'] + label::after {
 						content: '';
-						color: #fff;
+						color: slategrey;
 						position: absolute;
 						top: 50%;
 						left: 0;
@@ -399,7 +346,7 @@ class Results extends React.Component {
 						width: 14px;
 						height: 14px;
 						border-radius: 2px;
-						background: linear-gradient(45deg, #1ba899, #008f89);
+						background-color: #eee;
 						display: flex;
 						justify-content: center;
 						align-items: center;
@@ -407,9 +354,16 @@ class Results extends React.Component {
 					}
 					.filter section .checkbox input[type='checkbox']:checked + label::after {
 						content: '✔';
+						color: slategrey;
 					}
 					.filter section label span {
 						margin-left: 10px;
+						background-color: #ddd;
+						border: 1px solid rgba(0, 0, 0, 0.07);
+						border-radius: 3px;
+						padding: 0 0.6em;
+						color: #333;
+						font-size: 0.7em;
 					}
 					.filter .filter-button {
 						text-align: right;
