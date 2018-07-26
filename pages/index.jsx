@@ -77,7 +77,7 @@ class App extends Component {
 
 					@media (max-width: 1050px) {
 						body {
-							font-size: 13px;
+							font-size: 12px;
 						}
 					}
 				`}</style>

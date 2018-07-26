@@ -11,7 +11,7 @@ export default () => (
 						</a>
 					</Link>
 				</div>
-				<ul>
+				{/* <ul>
 					<li>
 						<Link href={'/stores'}>
 							<a>Stores</a>
@@ -22,7 +22,7 @@ export default () => (
 							<a>Download</a>
 						</Link>
 					</li>
-				</ul>
+				</ul> */}
 			</div>
 		</nav>
 		<style jsx>{`
