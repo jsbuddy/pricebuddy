@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import {FaStore, FaDownload} from 'react-icons/fa/index';
+import {IconContext} from 'react-icons';
+
+const iconStyle = {
+	fill: '#ddd',
+	marginTop: 2
+};
 
 export default () => (
 	<div>
@@ -11,21 +18,36 @@ export default () => (
 						</a>
 					</Link>
 				</div>
-				{/* <ul>
+				<ul>
 					<li>
 						<Link href={'/stores'}>
-							<a>Stores</a>
+							<a>
+								<span>
+									<IconContext.Provider value={{style: iconStyle}}>
+										<FaStore />
+									</IconContext.Provider>
+								</span>Stores
+							</a>
 						</Link>
 					</li>
-					<li>
+					{/* <li>
 						<Link href={'/download'}>
-							<a>Download</a>
+							<a>
+								<span>
+									<IconContext.Provider value={{style: iconStyle}}>
+										<FaDownload />
+									</IconContext.Provider>
+								</span>Download
+							</a>
 						</Link>
-					</li>
-				</ul> */}
+					</li> */}
+				</ul>
 			</div>
 		</nav>
 		<style jsx>{`
+			.nav-icon {
+				fill: 'red';
+			}
 			nav {
 				position: absolute;
 				top: 0;
@@ -52,17 +74,23 @@ export default () => (
 				display: block;
 				height: 100%;
 			}
+			ul li a span {
+				margin-right: 7px;
+				line-height: 100%;
+			}
 			ul li a {
 				display: flex;
 				align-items: center;
 				height: 100%;
-				padding: 0 1em;
+				padding: 0 0.8em;
 				color: #eee;
 			}
 			ul li a:hover {
 				color: #fff;
 			}
-
+			ul li a * {
+				fill: red;
+			}
 			@media (max-width: 1050px) {
 				ul li a {
 					padding: 0;

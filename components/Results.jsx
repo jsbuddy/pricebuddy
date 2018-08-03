@@ -1,3 +1,6 @@
+import {FaSearch} from '../node_modules/react-icons/fa/index';
+import {IconContext} from '../node_modules/react-icons/lib';
+
 class Results extends React.Component {
 	state = {
 		minPrice: 0,
@@ -63,8 +66,6 @@ class Results extends React.Component {
 
 	render() {
 		const {minPrice, maxPrice, stores, products} = this.state;
-
-		// console.log(this.props.data, stores);
 
 		return (
 			<div className={'results'}>
@@ -170,11 +171,44 @@ class Results extends React.Component {
 												</div>
 											)
 									)}
+								{products.length < 1 && (
+									<div className={'no-result'}>
+										{/* <IconContext.Provider
+											value={{
+												size: '2em',
+												style: {opacity: 0.7, marginBottom: 10}
+											}}>
+											<FaSearch />
+										</IconContext.Provider> */}
+										<h4>No Results</h4>
+										<p>
+											We couldnt find any product, try again with another
+											search term and make sure you have a working internet
+											connection
+										</p>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
 				</div>
 				<style jsx>{`
+					.no-result {
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						opacity: 0.3;
+						min-height: 50vh;
+					}
+					.no-result h4 {
+						font-size: 2em;
+						margin-bottom: 5px;
+					}
+					.no-result p {
+						font-size: 1.02em;
+						max-width: 500px;
+						line-height: 1.5em;
+					}
 					.box {
 						display: flex;
 						width: 100%;
