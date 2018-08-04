@@ -1,5 +1,5 @@
 import 'core-js/es6';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../components/Header';
 import Results from '../components/Results';
 import Loader from '../components/Loader';
@@ -14,18 +14,19 @@ class App extends Component {
 	};
 
 	_fetch = q => {
-		this.setState({fetching: true, searched: true});
+		this.setState({ fetching: true, searched: true });
 
 		fetch(`/api/fetch?q=${q}`)
 			.then(res => res.json())
-			.then(data => this.setState({fetching: false, data}))
+			.then(data => this.setState({ fetching: false, data }))
 			.catch(err => {
+				alert('An error occurred!');
 				console.log(err);
 			});
 	};
 
 	render() {
-		const {searched, fetching, data} = this.state;
+		const { searched, fetching, data } = this.state;
 
 		return (
 			<div>

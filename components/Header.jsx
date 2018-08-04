@@ -1,34 +1,43 @@
 import Navbar from '../components/Navbar';
-import {FaSearch} from 'react-icons/fa/index';
+import { FaSearch } from 'react-icons/fa/index';
 
 class Header extends React.Component {
-	handleSubmit = e => {
-		e.preventDefault();
-		const value = Array.from(e.target)
-			.filter(el => el.name === 'search')[0]
-			.value.trim();
+	state = {
+		value: ''
+	};
+
+	handleSearch = () => {
+		const value = this.state.value.trim();
 		value && this.props._fetch(value);
 		return false;
 	};
 
+	handleChange = e => this.setState({ value: e.target.value });
+
+	handleKeyUp = e => e.keyCode === 13 && this.handleSearch();
+
 	render() {
-		const {searched} = this.props;
+		const { value } = this.state;
+		const { searched } = this.props;
 
 		return (
 			<header className={`${searched && 'searched'}`}>
 				<Navbar searched={searched} />
 				<div className="container">
 					<div className={'content'}>
-						<form className={'search-input'} onSubmit={this.handleSubmit}>
+						<div className={'search-input'}>
 							<input
 								type={'text'}
 								placeholder={'Search for a product..'}
 								name={'search'}
+								value={value}
+								onChange={this.handleChange}
+								onKeyUp={this.handleKeyUp}
 							/>
-							<button type={'submit'}>
+							<button onClick={this.handleSearch}>
 								<FaSearch />
 							</button>
-						</form>
+						</div>
 					</div>
 				</div>
 				<style jsx>{`
