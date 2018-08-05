@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar';
-// import { FaSearch } from 'react-icons/fa/index';
+import { FaSearch } from 'react-icons/fa/index';
 
 class Header extends React.Component {
 	state = {
@@ -35,7 +35,7 @@ class Header extends React.Component {
 								onChange={this.handleChange}
 								onKeyUp={this.handleKeyUp}
 							/>
-							<button onClick={this.handleSearch}>{/* <FaSearch /> */}</button>
+							<button onClick={this.handleSearch}><FaSearch /></button>
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
-// import { FaStore, FaDownload } from 'react-icons/fa/index';
-// import { IconContext } from 'react-icons';
+import { FaStore, FaDownload } from 'react-icons/fa/index';
+import { IconContext } from 'react-icons';
 
 const iconStyle = {
 	fill: '#ddd',
@@ -23,9 +23,9 @@ export default () => (
 						<Link href={'/stores'}>
 							<a>
 								<span>
-									{/* <IconContext.Provider value={{ style: iconStyle }}> */}
-									{/* <FaStore /> */}
-									{/* </IconContext.Provider> */}
+									<IconContext.Provider value={{ style: iconStyle }}>
+										<FaStore />
+									</IconContext.Provider>
 								</span>Stores
 							</a>
 						</Link>
