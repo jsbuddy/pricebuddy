@@ -1,6 +1,3 @@
-import {FaSearch} from '../node_modules/react-icons/fa/index';
-import {IconContext} from '../node_modules/react-icons/lib';
-
 class Results extends React.Component {
 	state = {
 		minPrice: 0,
@@ -10,7 +7,7 @@ class Results extends React.Component {
 	};
 
 	componentWillMount() {
-		const {data} = this.props;
+		const { data } = this.props;
 		this.stores = Object.keys(data).map(key => key.toLowerCase());
 		const products = Object.keys(data)
 			.reduce((_new, key) => {
@@ -26,7 +23,7 @@ class Results extends React.Component {
 					(product.price.special || product.price.original || product.price.slotprice)
 			);
 
-		this.setState({stores: this.stores, products});
+		this.setState({ stores: this.stores, products });
 	}
 
 	handleFilter = e => {
@@ -42,7 +39,7 @@ class Results extends React.Component {
 				return _new;
 			}, []);
 
-		this.setState({minPrice, maxPrice, stores});
+		this.setState({ minPrice, maxPrice, stores });
 	};
 
 	striprice = p => {
@@ -65,7 +62,7 @@ class Results extends React.Component {
 	};
 
 	render() {
-		const {minPrice, maxPrice, stores, products} = this.state;
+		const { minPrice, maxPrice, stores, products } = this.state;
 
 		return (
 			<div className={'results'}>
@@ -173,13 +170,6 @@ class Results extends React.Component {
 									)}
 								{products.length < 1 && (
 									<div className={'no-result'}>
-										{/* <IconContext.Provider
-											value={{
-												size: '2em',
-												style: {opacity: 0.7, marginBottom: 10}
-											}}>
-											<FaSearch />
-										</IconContext.Provider> */}
 										<h4>No Results</h4>
 										<p>
 											We couldnt find any product, try again with another

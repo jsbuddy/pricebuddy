@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar';
-import { FaSearch } from 'react-icons/fa/index';
+// import { FaSearch } from 'react-icons/fa/index';
 
 class Header extends React.Component {
 	state = {
@@ -7,6 +7,7 @@ class Header extends React.Component {
 	};
 
 	handleSearch = () => {
+		console.log('clicked!');
 		const value = this.state.value.trim();
 		value && this.props._fetch(value);
 		return false;
@@ -34,9 +35,7 @@ class Header extends React.Component {
 								onChange={this.handleChange}
 								onKeyUp={this.handleKeyUp}
 							/>
-							<button onClick={this.handleSearch}>
-								<FaSearch />
-							</button>
+							<button onClick={this.handleSearch}>{/* <FaSearch /> */}</button>
 						</div>
 					</div>
 				</div>
@@ -46,44 +45,11 @@ class Header extends React.Component {
 						top: 0;
 						left: 0;
 						width: 100%;
-						// background: linear-gradient(45deg, steelblue, #1ba899, #008f89);
 						box-shadow: 0 0 10px rgba(0, 0, 0, 0.051);
 						z-index: 1;
-						background: #141e30; /* fallback for old browsers */
-						background: -webkit-linear-gradient(
-							to right,
-							#243b55,
-							#141e30
-						); /* Chrome 10-25, Safari 5.1-6 */
-						background: linear-gradient(
-							to right,
-							#243b55,
-							#141e30
-						); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 						background: #4b79a1; /* fallback for old browsers */
-						background: -webkit-linear-gradient(
-							to right,
-							#283e51,
-							#4b79a1
-						); /* Chrome 10-25, Safari 5.1-6 */
-						background: linear-gradient(
-							to right,
-							#283e51,
-							#4b79a1
-						); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-						// background: #136a8a;
-						// background: -webkit-linear-gradient(
-						// 	to right,
-						// 	#267871,
-						// 	#136a8a
-						// );
-						// background: linear-gradient(
-						// 	to right,
-						// 	#267871,
-						// 	#136a8a
-						// );
+						background: -webkit-linear-gradient(to right, #283e51, #4b79a1);
+						background: linear-gradient(to right, #283e51, #4b79a1);
 					}
 					header > .container {
 						display: flex;
