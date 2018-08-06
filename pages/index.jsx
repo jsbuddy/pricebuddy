@@ -51,11 +51,11 @@ class App extends Component {
 						padding: 0;
 						box-sizing: border-box;
 						font-family: Nunito, 'Segoe UI';
-						color: slategray;
 					}
 					body {
 						background-color: #fff;
 						font-size: 14px;
+						color: slategray;
 					}
 					a {
 						text-decoration: none;
