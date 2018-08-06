@@ -1,11 +1,6 @@
 import Link from 'next/link';
-import { FaStore, FaDownload } from 'react-icons/fa/index';
-import { IconContext } from 'react-icons';
-
-const iconStyle = {
-	fill: '#ddd',
-	marginTop: 2
-};
+import { Icon } from 'react-icons-kit';
+import { shoppingCart } from 'react-icons-kit/fa/shoppingCart';
 
 export default () => (
 	<div>
@@ -22,31 +17,19 @@ export default () => (
 					<li>
 						<Link href={'/stores'}>
 							<a>
-								<span>
-									<IconContext.Provider value={{ style: iconStyle }}>
-										<FaStore />
-									</IconContext.Provider>
+								<span className={'nav-icon'}>
+									<Icon icon={shoppingCart} />
 								</span>Stores
 							</a>
 						</Link>
 					</li>
-					{/* <li>
-						<Link href={'/download'}>
-							<a>
-								<span>
-									<IconContext.Provider value={{style: iconStyle}}>
-										<FaDownload />
-									</IconContext.Provider>
-								</span>Download
-							</a>
-						</Link>
-					</li> */}
 				</ul>
 			</div>
 		</nav>
 		<style jsx>{`
 			.nav-icon {
-				fill: 'red';
+				color: 'red';
+				margin-top: 2px;
 			}
 			nav {
 				position: absolute;
@@ -89,7 +72,7 @@ export default () => (
 				color: #fff;
 			}
 			ul li a * {
-				fill: red;
+				color: orange;
 			}
 			@media (max-width: 1050px) {
 				ul li a {

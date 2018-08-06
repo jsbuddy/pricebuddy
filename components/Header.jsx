@@ -1,5 +1,7 @@
 import Navbar from '../components/Navbar';
-import { FaSearch } from 'react-icons/fa/index';
+
+import { Icon } from 'react-icons-kit';
+import { search } from 'react-icons-kit/fa/search';
 
 class Header extends React.Component {
 	state = {
@@ -35,7 +37,9 @@ class Header extends React.Component {
 								onChange={this.handleChange}
 								onKeyUp={this.handleKeyUp}
 							/>
-							<button onClick={this.handleSearch}><FaSearch /></button>
+							<button onClick={this.handleSearch}>
+								<Icon icon={search} />
+							</button>
 						</div>
 					</div>
 				</div>
@@ -106,7 +110,7 @@ class Header extends React.Component {
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						border-radius: 50%;
+						border-radius: 10px;
 					}
 
 					header .search-input button * {
