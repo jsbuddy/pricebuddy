@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { Icon } from 'react-icons-kit';
-import { shoppingCart } from 'react-icons-kit/fa/shoppingCart';
 
-export default () => (
+export default props => (
 	<div>
 		<nav>
 			<div className="container">
@@ -14,15 +13,18 @@ export default () => (
 					</Link>
 				</div>
 				<ul>
-					<li>
-						<Link href={'/stores'}>
-							<a>
-								<span className={'nav-icon'}>
-									<Icon icon={shoppingCart} />
-								</span>Stores
-							</a>
-						</Link>
-					</li>
+					{(props.links || []).map(link => (
+						<li key={link.name}>
+							<Link href={link.href}>
+								<a>
+									<span className={'nav-icon'}>
+										<Icon icon={link.icon} />
+									</span>
+									{link.name}
+								</a>
+							</Link>
+						</li>
+					))}
 				</ul>
 			</div>
 		</nav>

@@ -1,4 +1,5 @@
 import 'core-js/es6';
+import 'core-js/es7';
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Results from '../components/Results';
@@ -58,6 +59,7 @@ class App extends Component {
 						color: slategray;
 					}
 					a {
+						color: slategrey;
 						text-decoration: none;
 					}
 					img {

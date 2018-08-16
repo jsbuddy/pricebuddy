@@ -2,30 +2,33 @@ import Navbar from '../components/Navbar';
 
 import { Icon } from 'react-icons-kit';
 import { search } from 'react-icons-kit/fa/search';
+import { shoppingCart } from 'react-icons-kit/fa/shoppingCart';
 
 class Header extends React.Component {
 	state = {
-		value: ''
+		value: '',
+		inputError: false
 	};
 
 	handleSearch = () => {
-		console.log('clicked!');
 		const value = this.state.value.trim();
-		value && this.props._fetch(value);
-		return false;
+		!value ? this.setState({ inputError: true }) : this.props._fetch(value);
 	};
 
-	handleChange = e => this.setState({ value: e.target.value });
+	handleChange = e => this.setState({ value: e.target.value, inputError: false });
 
 	handleKeyUp = e => e.keyCode === 13 && this.handleSearch();
 
 	render() {
-		const { value } = this.state;
+		const { value, inputError } = this.state;
 		const { searched } = this.props;
 
 		return (
 			<header className={`${searched && 'searched'}`}>
-				<Navbar searched={searched} />
+				<Navbar
+					searched={searched}
+					links={[{ name: 'Stores', href: '/stores', icon: shoppingCart }]}
+				/>
 				<div className="container">
 					<div className={'content'}>
 						<div className={'search-input'}>
@@ -36,6 +39,7 @@ class Header extends React.Component {
 								value={value}
 								onChange={this.handleChange}
 								onKeyUp={this.handleKeyUp}
+								className={inputError && 'error'}
 							/>
 							<button onClick={this.handleSearch}>
 								<Icon icon={search} />
@@ -49,7 +53,8 @@ class Header extends React.Component {
 						top: 0;
 						left: 0;
 						width: 100%;
-						box-shadow: 0 0 10px rgba(0, 0, 0, 0.051);
+						// box-shadow: 0 0 10px rgba(0, 0, 0, 0.051);
+						box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 						z-index: 1;
 						background: #4b79a1; /* fallback for old browsers */
 						background: -webkit-linear-gradient(to right, #283e51, #4b79a1);
@@ -96,6 +101,13 @@ class Header extends React.Component {
 						font: inherit;
 						padding-right: 13%;
 					}
+					header .search-input input.error {
+						box-shadow: 0 0 30px #b721218c;
+						animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+						transform: translate3d(0, 0, 0);
+						backface-visibility: hidden;
+						perspective: 1000px;
+					}
 					header .search-input button {
 						position: absolute;
 						top: 50%;
@@ -110,7 +122,7 @@ class Header extends React.Component {
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						border-radius: 10px;
+						border-radius: 50%;
 					}
 
 					header .search-input button * {
@@ -134,6 +146,29 @@ class Header extends React.Component {
 							padding-top: 110px;
 							padding-bottom: 2em;
 							height: 210px;
+						}
+					}
+
+					@keyframes shake {
+						10%,
+						90% {
+							transform: translate3d(-1px, 0, 0);
+						}
+
+						20%,
+						80% {
+							transform: translate3d(2px, 0, 0);
+						}
+
+						30%,
+						50%,
+						70% {
+							transform: translate3d(-2px, 0, 0);
+						}
+
+						40%,
+						60% {
+							transform: translate3d(2px, 0, 0);
 						}
 					}
 				`}</style>

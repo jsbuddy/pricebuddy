@@ -23,23 +23,18 @@ class Results extends React.Component {
 					(product.price.special || product.price.original || product.price.slotprice)
 			);
 
-		this.setState({ stores: this.stores, products });
+		this.setState({ stores: Array.from(this.stores), products });
 	}
 
-	handleFilter = e => {
-		e.preventDefault();
-		const data = Array.from(e.target);
-
-		const minPrice = data.find(el => el.name === 'min-price').value,
-			maxPrice = data.find(el => el.name === 'max-price').value,
-			stores = data.reduce((_new, el) => {
-				if (el.type === 'checkbox') {
-					el.checked && _new.push(el.name);
+	handleFormChange = e => {
+		const { type, name, value, checked } = e.target;
+		if (type === 'number') this.setState({ [name]: parseInt(value, 10) });
+		if (type === 'checkbox') {
+			const stores = this.state.stores;
+			if (checked && !stores.includes(name)) stores.push(name);
+			if (!checked) stores.splice(stores.indexOf(name), 1);
+			this.setState({ stores });
 				}
-				return _new;
-			}, []);
-
-		this.setState({ minPrice, maxPrice, stores });
 	};
 
 	striprice = p => {
@@ -47,6 +42,7 @@ class Results extends React.Component {
 		price = price
 			.trim()
 			.split('.')[0]
+			.replace(' ', '')
 			.replace(' ', '')
 			.replace('₦', '')
 			.replace(',', '');
@@ -69,19 +65,19 @@ class Results extends React.Component {
 				<div className={'container'}>
 					<div className={'wrapper'}>
 						<div className={'filter-wrap'}>
-							<form className={'filter'} onSubmit={this.handleFilter}>
+							<form className={'filter'} onChange={this.handleFormChange}>
 								<section>
 									<h4 className={'title'}>Price</h4>
 									<div className={'box'}>
 										<input
 											type={'number'}
-											name={'min-price'}
+											name={'minPrice'}
 											defaultValue={minPrice}
 											step={1000}
 										/>
 										<input
 											type={'number'}
-											name={'max-price'}
+											name={'maxPrice'}
 											defaultValue={maxPrice}
 											step={1000}
 										/>
@@ -116,9 +112,6 @@ class Results extends React.Component {
 										);
 									})}
 								</section>
-								<div className={'filter-button'}>
-									<button type={'submit'}>Filter</button>
-								</div>
 							</form>
 						</div>
 						<div className={'results-wrap'}>
@@ -189,14 +182,15 @@ class Results extends React.Component {
 						justify-content: center;
 						opacity: 0.3;
 						min-height: 50vh;
+						max-width: 400px;
 					}
 					.no-result h4 {
 						font-size: 2em;
 						margin-bottom: 5px;
+						color: #fd6060;
 					}
 					.no-result p {
 						font-size: 1.02em;
-						max-width: 500px;
 						line-height: 1.5em;
 					}
 					.box {
