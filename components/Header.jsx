@@ -28,6 +28,9 @@ class Header extends React.Component {
 				<Navbar
 					searched={searched}
 					links={[{ name: 'Stores', href: '/stores', icon: shoppingCart }]}
+					style={{
+						background: 'linear-gradient(to bottom, rgb(40, 62, 81), transparent)'
+					}}
 				/>
 				<div className="container">
 					<div className={'content'}>

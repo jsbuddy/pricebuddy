@@ -3,7 +3,7 @@ import { Icon } from 'react-icons-kit';
 
 export default props => (
 	<div>
-		<nav>
+		<nav style={props.style && { ...props.style }}>
 			<div className="container">
 				<div className={'logo'}>
 					<Link href={'/'}>
