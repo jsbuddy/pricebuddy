@@ -6,28 +6,35 @@ import Results from '../components/Results';
 import Loader from '../components/Loader';
 import Head from 'next/head';
 import 'isomorphic-fetch';
+import { Icon } from 'react-icons-kit';
+import { rotateRight } from 'react-icons-kit/fa/rotateRight';
 
 class App extends Component {
 	state = {
 		searched: false,
 		fetching: false,
-		data: {}
+		data: {},
+		err: false
 	};
 
-	_fetch = q => {
-		this.setState({ fetching: true, searched: true });
+	startFetch = q => {
+		this.q = q;
+		this._fetch(this.q);
+	};
 
-		fetch(`/api/fetch?q=${q}`)
+	_fetch = () => {
+		this.setState({ fetching: true, searched: true, err: false });
+
+		fetch(`/api/fetch?q=${this.q}`)
 			.then(res => res.json())
 			.then(data => this.setState({ fetching: false, data }))
-			.catch(err => {
-				alert('An error occurred!');
-				console.log(err);
-			});
+			.catch(err => this.setState({ err: true }));
 	};
 
+	retry = () => this._fetch(this.q);
+
 	render() {
-		const { searched, fetching, data } = this.state;
+		const { searched, fetching, data, err } = this.state;
 
 		return (
 			<div>
@@ -42,11 +49,53 @@ class App extends Component {
 					<meta httpEquiv={'X-UA-Compatible'} content="ie=edge" />
 					<title>Price Buddy</title>
 				</Head>
-				<Header _fetch={this._fetch} searched={searched} />
-				{fetching && <Loader />}
-				{!fetching && searched && <Results data={data} />}
+				<Header onFetch={this.startFetch} searched={searched} />
+				{fetching && !err && <Loader />}
+				{!fetching && searched && !err && <Results data={data} />}
+				{err && (
+					<div className="error container">
+						<h4>An error occurred</h4>
+						<button onClick={this.retry}>
+							<span className="icon">
+								<Icon icon={rotateRight} />
+							</span>{' '}
+							Retry
+						</button>
+					</div>
+				)}
 
 				<style jsx global>{`
+					.error {
+						height: 80vh;
+						width: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-flow: column;
+					}
+					.error h4 {
+						font-size: 1.3em;
+						font-weight: 500;
+						color: #ffabab;
+						margin-bottom: 15px;
+						letter-spacing: 0.4px;
+					}
+					.error button {
+						border: 0;
+						background-color: #eee;
+						border-radius: 30px;
+						padding: 0.7em 2em;
+						color: inherit;
+						cursor: pointer;
+					}
+					.error button:hover {
+						background-color: #ddd;
+					}
+					.error button .icon {
+						position: relative;
+						top: 3px;
+						margin-right: 5px;
+					}
 					* {
 						margin: 0;
 						padding: 0;

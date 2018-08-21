@@ -34,7 +34,7 @@ class Results extends React.Component {
 			if (checked && !stores.includes(name)) stores.push(name);
 			if (!checked) stores.splice(stores.indexOf(name), 1);
 			this.setState({ stores });
-				}
+		}
 	};
 
 	striprice = p => {
@@ -163,12 +163,12 @@ class Results extends React.Component {
 									)}
 								{products.length < 1 && (
 									<div className={'no-result'}>
-										<h4>No Results</h4>
-										<p>
+										<h3>No Results</h3>
+										{/* <p>
 											We couldnt find any product, try again with another
 											search term and make sure you have a working internet
 											connection
-										</p>
+										</p> */}
 									</div>
 								)}
 							</div>
@@ -180,18 +180,20 @@ class Results extends React.Component {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
+						align-items: center;
 						opacity: 0.3;
 						min-height: 50vh;
-						max-width: 400px;
 					}
-					.no-result h4 {
-						font-size: 2em;
+					.no-result h3 {
+						font-size: 1.6em;
 						margin-bottom: 5px;
-						color: #fd6060;
+						font-weight: 500;
+						max-width: 400px;
 					}
 					.no-result p {
 						font-size: 1.02em;
 						line-height: 1.5em;
+						max-width: 400px;
 					}
 					.box {
 						display: flex;

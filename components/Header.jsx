@@ -12,7 +12,7 @@ class Header extends React.Component {
 
 	handleSearch = () => {
 		const value = this.state.value.trim();
-		!value ? this.setState({ inputError: true }) : this.props._fetch(value);
+		!value ? this.setState({ inputError: true }) : this.props.onFetch(value);
 	};
 
 	handleChange = e => this.setState({ value: e.target.value, inputError: false });

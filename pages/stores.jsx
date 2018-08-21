@@ -7,25 +7,17 @@ import { shoppingBasket } from 'react-icons-kit/fa/shoppingBasket';
 const stores = [
 	{
 		name: 'Jumia',
-		description: `
-			Jumia is your number one online shopping site in Nigeria. We are an online store where you can purchase all your electronics, as well as books, home appliances, kiddies items, fashion items for men, women, and children; cool gadgets, computers, groceries, automobile parts, and more on the go. What more? You can have them delivered directly to you. Shop online with great ease as you pay with JumiaPay which guarantees you the safest online shopping payment method, allowing you make stress free payments. Whatever it is you wish to buy, Jumia offers you all and lots more at prices which you can trust. Jumia has payment options for everyone irrespective of taste, class, and preferences. Here, you also have the option to make your payment on delivery for extra convenience. Shopping online in Nigeria is easy and convenient with Jumia. We provide you with a wide range of products you can trust. Take part in the deals of the day and discover the best prices on a wide range of products.
-		`,
+		description: `Jumia is your number one online shopping site in Nigeria. We are an online store where you can purchase all your electronics, as well as books, home appliances, kiddies items, fashion items for men, women, and children; cool gadgets, computers, groceries, automobile parts, and more on the go. What more? You can have them delivered directly to you. Shop online with great ease as you pay with JumiaPay which guarantees you the safest online shopping payment method, allowing you make stress free payments.`,
 		link: 'jumia.com.ng'
 	},
 	{
 		name: 'Konga',
-		description: `
-			Konga.com is Nigeria’s number one online shopping destination. We pride ourselves on having everything you could possibly need for life and living at the best prices than anywhere else. Our access to Original Equipment Manufacturers and premium sellers gives us a wide range of products at very low prices. Some of our popular categories include electronics, mobile phones, computers, fashion, beauty products, home and kitchen, Building and construction materials and a whole lot more from premium brands.
-		`,
+		description: `Konga.com is Nigeria’s number one online shopping destination. We pride ourselves on having everything you could possibly need for life and living at the best prices than anywhere else. Our access to Original Equipment Manufacturers and premium sellers gives us a wide range of products at very low prices. Some of our popular categories include electronics, mobile phones, computers, fashion, beauty products, home and kitchen, Building and construction materials and a whole lot more from premium brands.`,
 		link: 'konga.com'
 	},
 	{
 		name: 'Slot',
-		description: `
-		SLOT Systems Limited is the leading retail company for affordable and durable mobile phones, computers, accessories, and various types of Electronics. We consider it necessary to fill up this need in the global information technology sector with emphasis on Africa market. As an indigenous company, established in 1998, we don’t just sell electronic gadgets, we provide first class after sales support that is comparable to international market standard. 
-		Over the years, we have been the first to announce and introduce new Brands, and services such as, Mobile Phone engineering service, phone screen insurance, phone trade-In, Stolen Phone recovery app and much more.
-		Slot Systems made a priceless contribution in providing personal computer (PCs) and its related services in the late 90s.
-		With the ability of our dynamic leadership in the retail sector, we have continuously provided excellent customer experience.`,
+		description: `SLOT Systems Limited is the leading retail company for affordable and durable mobile phones, computers, accessories, and various types of Electronics. We consider it necessary to fill up this need in the global information technology sector with emphasis on Africa market. As an indigenous company, established in 1998, we don’t just sell electronic gadgets, we provide first class after sales support that is comparable to international market standard. `,
 		link: 'slot.ng'
 	}
 ];
