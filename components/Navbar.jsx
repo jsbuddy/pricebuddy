@@ -8,7 +8,7 @@ export default props => (
 				<div className={'logo'}>
 					<Link href={'/'}>
 						<a>
-							<img src={'/static/pb.png'} />
+							<img src={'/pb.png'} />
 						</a>
 					</Link>
 				</div>
