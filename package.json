@@ -13,14 +13,18 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.18.0",
+		"axios": "^0.19.2",
+		"core-js": "^3.6.5",
 		"es6-promise": "^4.2.4",
 		"express": "^4.16.3",
 		"isomorphic-fetch": "^2.2.1",
-		"next": "^6.1.1",
-		"react": "^16.4.1",
-		"react-dom": "^16.4.1",
+		"next": "^9.4.4",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
 		"react-icons-kit": "^1.1.7",
 		"x-ray": "^2.3.3"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.4"
 	}
 }

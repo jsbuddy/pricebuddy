@@ -1,5 +1,4 @@
-import 'core-js/es6';
-import 'core-js/es7';
+import 'core-js';
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Results from '../components/Results';
