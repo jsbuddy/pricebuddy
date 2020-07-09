@@ -16,13 +16,13 @@
 		"axios": "^0.19.2",
 		"core-js": "^3.6.5",
 		"es6-promise": "^4.2.4",
-		"express": "^4.16.3",
+		"express": "^4.17.1",
 		"isomorphic-fetch": "^2.2.1",
 		"next": "^9.4.4",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-icons-kit": "^1.1.7",
-		"x-ray": "^2.3.3"
+		"x-ray": "^2.3.4"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.4"
