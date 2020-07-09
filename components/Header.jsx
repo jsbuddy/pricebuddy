@@ -28,9 +28,6 @@ class Header extends React.Component {
 				<Navbar
 					searched={searched}
 					links={[{ name: 'Stores', href: '/stores', icon: shoppingCart }]}
-					style={{
-						background: 'linear-gradient(to bottom, rgb(40, 62, 81), transparent)'
-					}}
 				/>
 				<div className="container">
 					<div className={'content'}>
@@ -59,9 +56,7 @@ class Header extends React.Component {
 						// box-shadow: 0 0 10px rgba(0, 0, 0, 0.051);
 						box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 						z-index: 1;
-						background: #4b79a1; /* fallback for old browsers */
-						background: -webkit-linear-gradient(to right, #283e51, #4b79a1);
-						background: linear-gradient(to right, #283e51, #4b79a1);
+						background-image: radial-gradient( circle 987px at 99% 2%,  rgba(22,183,229,1) 0%, rgba(9,54,103,1) 90% );
 					}
 					header > .container {
 						display: flex;
