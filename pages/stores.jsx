@@ -41,11 +41,9 @@ const Stores = props => {
 							<span>{store.name}</span>
 						</h3>
 						<p>{store.description}</p>
-						<Link href={`http://${store.link}`}>
-							<a className="link" target="_blank">
-								Visit
-							</a>
-						</Link>
+						<a className="link" href={`https://${store.link}`} target="_blank">
+							Visit
+						</a>
 					</section>
 				))}
 			</main>
